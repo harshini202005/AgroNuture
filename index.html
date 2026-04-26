@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroNurture - Smart Farming Solution</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Chart.js for Dashboard Visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+
+</head>
+<body>
+  <header>
+    <h1>AgroNurture</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <section id="home">
+    <h1>Welcome to AgroNurture</h1>
+    <p>Empowering farmers with data-driven insights to improve crop yields and ensure sustainable farming practices.</p>
+
+    <h2>What We Offer</h2>
+    <div class="features1">
+      <div class="feature-box1">
+        <h3>Smart Fertilizer Recommendations</h3>
+        <p>Get optimal fertilizer recommendations based on your soil, crop, and weather conditions.</p>
+      </div>
+      <div class="feature-box1">
+        <h3>Soil Health Monitoring</h3>
+        <p>Track soil health parameters like pH, nitrogen, phosphorus, and potassium content.</p>
+      </div>
+      <div class="feature-box1">
+        <h3>Weather Forecast Integration</h3>
+        <p>Receive real-time weather updates for your farm's location and plan accordingly.</p>
+      </div>
+      <div class="feature-box1">
+        <h3>AI-Powered Assistance</h3>
+        <p>Get instant answers to your farming queries from our intelligent AI chatbot.</p>
+      </div>
+    </div>
+
+    <ul>
+      <h2>Why to Choose AgroNurture?</h2>
+      <li>Data-Driven Farming for smarter decisions.</li>
+      <li>Sustainable practices that reduce waste and protect soil health.</li>
+      <li>Accessible platform to manage your farm anytime, anywhere.</li>
+    </ul>
+  </section>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features-container">
+      <div class="feature-box">
+        <a href="soilhealth.html"><img src="soilhealth.png" alt="" height="75%" width="75%">Soil Health Monitoring</a>
+      </div>
+      <div class="feature-box">
+        <a href="soilfertility.html"><img src="fertilizer.png" alt="" height="75%" width="75%">Fertilizer Recommendations</a>
+      </div>
+      <div class="feature-box">
+        <a href="diseasepage.html"><img src="disease.png" alt="" height="75%" width="75%">Disease Prediction</a>
+      </div>
+      <div class="feature-box">
+        <a href="chatbot.html"><img src="chatbot.png" alt="" height="75%" width="75%">AI Chatbot</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard">
+    <h2>Dashboard</h2>
+    <div class="dashboard-container">
+      <div>
+        <h3>Soil pH Levels</h3>
+        <canvas id="soilPHChart" width="400" height="200" style="border: 4px solid black;"></canvas>
+      </div>
+      <div>
+        <h3>Soil Nutrient Content (N, P, K)</h3>
+        <canvas id="soilNutrientChart" width="400" height="200" style="border: 4px solid black;"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding: 50px 20px; background-color: #f8f9fa;">
+    <h2 style="text-align: center; color: #28a745; margin-bottom: 30px;">Contact Us</h2>
+    
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+      
+      <!-- Contact Info Cards -->
+      <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 40px; margin-bottom: 15px;">📧</div>
+        <h3 style="color: #333; margin-bottom: 10px;">Email Us</h3>
+        <p style="color: #666; line-height: 1.6;">
+          <a href="mailto:agronuture@gmail.com" style="color: #28a745; text-decoration: none; font-weight: bold;">agronuture@gmail.com</a>
+        </p>
+        <p style="color: #888; font-size: 14px; margin-top: 10px;">We reply within 24 hours</p>
+      </div>
+
+      <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 40px; margin-bottom: 15px;">📞</div>
+        <h3 style="color: #333; margin-bottom: 10px;">Call Us</h3>
+        <p style="color: #666; line-height: 1.6;">
+          <a href="tel:+919876543290" style="color: #28a745; text-decoration: none; font-weight: bold;">+91 98765 43290</a>
+        </p>
+        <p style="color: #888; font-size: 14px; margin-top: 10px;">Mon-Sat, 8AM - 6PM IST</p>
+      </div>
+
+      <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+        <div style="font-size: 40px; margin-bottom: 15px;">🤖</div>
+        <h3 style="color: #333; margin-bottom: 10px;">AI Assistant</h3>
+        <p style="color: #666; line-height: 1.6;">
+          <a href="chatbot.html" style="color: #28a745; text-decoration: none; font-weight: bold;">Ask AI Assistant</a>
+        </p>
+        <p style="color: #888; font-size: 14px; margin-top: 10px;">Get instant farming advice</p>
+      </div>
+    </div>
+
+    <!-- Quick Contact Form -->
+    <div style="max-width: 600px; margin: 40px auto 0; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <h3 style="color: #333; margin-bottom: 20px; text-align: center;">Send us a Message</h3>
+      <form onsubmit="handleContactSubmit(event)">
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; color: #555; font-weight: bold; font-size: 16px;">Your Name</label>
+          <input type="text" id="contact-name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; color: #555; font-weight: bold; font-size: 16px;">Your Email</label>
+          <input type="email" id="contact-email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+          <label style="display: block; margin-bottom: 5px; color: #555; font-weight: bold; font-size: 16px;">Message</label>
+          <textarea id="contact-message" rows="4" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; resize: vertical;"></textarea>
+        </div>
+        <button type="submit" style="width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.3s;">
+          Send Message ✉️
+        </button>
+      </form>
+      <div id="contact-feedback" style="margin-top: 15px; text-align: center; display: none;"></div>
+    </div>
+  </section>
+
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const message = document.getElementById('contact-message').value;
+      const feedback = document.getElementById('contact-feedback');
+      
+      // Simulate sending
+      feedback.style.display = 'block';
+      feedback.innerHTML = '<p style="color: #28a745; font-size: 16px;">✅ Thank you ' + name + '! Your message has been sent. We will contact you soon.</p>';
+      
+      // Clear form
+      document.getElementById('contact-name').value = '';
+      document.getElementById('contact-email').value = '';
+      document.getElementById('contact-message').value = '';
+      
+      // Hide feedback after 5 seconds
+      setTimeout(() => {
+        feedback.style.display = 'none';
+      }, 5000);
+    }
+  </script>
+
+  <footer>
+    <p><span class="copyright">&copy; 2024 AgroNurture</span> - All Rights Reserved</p>
+  </footer>
+
+  <!-- Chart Update Script -->
+  <script>
+    function updateSoilPHChart() {
+      const ctx = document.getElementById('soilPHChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Sample 1', 'Sample 2', 'Sample 3'],
+          datasets: [{
+            label: 'Soil pH Level',
+            data: [6.5, 6.9, 8.9],
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    function updateSoilNutrientChart() {
+      const ctx = document.getElementById('soilNutrientChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Nitrogen', 'Potassium', 'Phosphorus'],
+          datasets: [{
+            label: 'Soil Nutrients (ppm)',
+            data: [40, 30, 20],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    window.onload = function () {
+      updateSoilPHChart();
+      updateSoilNutrientChart();
+    };
+  </script>
+</body>
+</html>

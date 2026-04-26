@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroNurture</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 80vh;
+            width: 100%;
+        }
+        .controls {
+            padding: 10px;
+            background: white;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        #farm-size {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <div id="farm-size">Farm size: 0 hectares</div>
+        <button id="analyze-btn">Analyze</button>
+    </div>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+    <script>
+        // Initialize map with satellite view using OpenStreetMap
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        // OpenStreetMap Tile Layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Automatically detect user's location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var userLat = position.coords.latitude;
+                var userLng = position.coords.longitude;
+
+                // Set the map view to user's location
+                map.setView([userLat, userLng], 13);
+
+                // Add a marker for the detected location
+                var userMarker = L.marker([userLat, userLng]).addTo(map)
+                    .bindPopup("<b>Your Current Location</b><br />Use this location for analysis.")
+                    .openPopup();
+
+                // Fetch weather data for the user's location
+                fetchWeatherData(userLat, userLng);
+            }, function() {
+                alert('Geolocation is not supported by your browser or permission denied.');
+            });
+        } else {
+            alert('Geolocation is not supported by this browser.');
+        }
+
+        // Function to fetch weather data from OpenWeatherMap
+        function fetchWeatherData(lat, lon) {
+            const apiKey = 'YOUR_API_KEY'; // Replace with your OpenWeatherMap API key
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const weather = `Weather: ${data.weather[0].description}<br>Temperature: ${data.main.temp} °C`;
+                    // Display weather info on the map
+                    L.popup()
+                        .setLatLng([lat, lon])
+                        .setContent(weather)
+                        .openOn(map);
+                })
+                .catch(error => console.error('Error fetching weather data:', error));
+        }
+
+        // Leaflet Draw: Allow user to draw farm size on the map
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            },
+            draw: {
+                polygon: true,
+                polyline: false,
+                circle: false,
+                marker: false,
+                rectangle: true // Enable rectangle drawing
+            }
+        });
+
+        map.addControl(drawControl);
+
+        // Event handler for drawing a rectangle (farm size)
+        map.on(L.Draw.Event.CREATED, function (event) {
+            var layer = event.layer;
+            drawnItems.addLayer(layer);
+
+            // Get the bounds of the drawn rectangle
+            var bounds = layer.getBounds();
+
+            // Calculate the area (square meters) of the rectangle
+            var area = L.GeometryUtil.geodesicArea(layer.getLatLngs()[0]);
+
+            // Convert area to hectares (1 hectare = 10,000 square meters)
+            var areaHectares = (area / 10000).toFixed(2);
+
+            // Display the farm size in hectares
+            document.getElementById('farm-size').innerHTML = "Farm size: " + areaHectares + " hectares";
+        });
+
+        // Event handler for clicking the analyze button
+        document.getElementById('analyze-btn').addEventListener('click', function() {
+            alert('Analyzing soil and weather data based on your selected farm area...');
+            // Placeholder for further integration (API calls for weather, soil data, etc.)
+        });
+    </script>
+</body>
+</html>

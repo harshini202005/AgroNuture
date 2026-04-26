@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroNurture - Community</title>
+  <link rel="stylesheet" href="styles-global.css">
+
+  <style>
+    .community-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .chat-box {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 20px;
+      height: 450px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      border: 1px solid var(--gray-200);
+    }
+
+    .message {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-teal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .message-content {
+      background: white;
+      padding: 15px;
+      border-radius: 15px;
+      max-width: 75%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .message.own .message-content {
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-teal));
+      color: white;
+      margin-left: auto;
+    }
+
+    .message.own {
+      flex-direction: row-reverse;
+    }
+
+    .message.own .avatar {
+      margin-right: 0;
+      margin-left: 12px;
+      background: var(--gray-600);
+    }
+
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .message-name {
+      font-weight: 600;
+      color: var(--primary-green);
+    }
+
+    .message.own .message-name {
+      color: white;
+    }
+
+    .message-time {
+      color: var(--gray-500);
+      font-size: 12px;
+    }
+
+    .message.own .message-time {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .chat-input-wrapper {
+      display: flex;
+      gap: 12px;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 14px 20px;
+      border: 2px solid var(--gray-300);
+      border-radius: 30px;
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .chat-input:focus {
+      border-color: var(--primary-green);
+    }
+
+    @media (max-width: 768px) {
+      .chat-box {
+        height: 350px;
+      }
+      
+      .message-content {
+        max-width: 85%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <header style="background-color: #28a745; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <div style="flex: 1; text-align: center;">
+      <h1 style="margin: 0; font-size: 24px;">AgroNurture: Farming Community</h1>
+    </div>
+    <a href="index.html" style="background-color: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Home</a>
+  </header>
+
+  <div class="agro-container">
+    <div class="agro-card community-container">
+      <h2 class="agro-section-title">💬 Farming Community</h2>
+      
+      <div class="agro-info-box">
+        <strong>Connect with Fellow Farmers</strong><br>
+        Share experiences, ask questions, and learn from the community.
+      </div>
+
+      <div class="chat-box" id="chat-box">
+        <div class="message">
+          <div class="avatar">👨‍🌾</div>
+          <div class="message-content">
+            <div class="message-header">
+              <span class="message-name">Ramesh Farmer</span>
+              <span class="message-time">10:15 AM</span>
+            </div>
+            <div>Has anyone tried the new organic fertilizers for wheat crops? Looking for recommendations! 🌾</div>
+          </div>
+        </div>
+
+        <div class="message">
+          <div class="avatar">👩‍🌾</div>
+          <div class="message-content">
+            <div class="message-header">
+              <span class="message-name">Sita AgroExpert</span>
+              <span class="message-time">10:20 AM</span>
+            </div>
+            <div>Yes! I tried GreenHarvest last season. Improved my yield by 20%. Highly recommend it! ✅</div>
+          </div>
+        </div>
+
+        <div class="message">
+          <div class="avatar">👨‍🌾</div>
+          <div class="message-content">
+            <div class="message-header">
+              <span class="message-name">Krishna Farmer</span>
+              <span class="message-time">10:25 AM</span>
+            </div>
+            <div>Which brand would you suggest for sandy soil? I need something that retains moisture well. 💧</div>
+          </div>
+        </div>
+
+        <div class="message">
+          <div class="avatar">👩‍🌾</div>
+          <div class="message-content">
+            <div class="message-header">
+              <span class="message-name">Sita AgroExpert</span>
+              <span class="message-time">10:28 AM</span>
+            </div>
+            <div>For sandy soil, look for fertilizers with high organic matter content. Vermicompost works great! 🪱</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input-wrapper">
+        <input type="text" id="message-input" class="chat-input" placeholder="Type your message..." />
+        <button onclick="sendMessage()" class="agro-btn" style="width: auto; padding: 14px 28px;">
+          📤 Send
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="agro-footer">
+    <p><span class="agro-copyright">&copy; 2024 AgroNurture</span> - All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function sendMessage() {
+      const chatBox = document.getElementById('chat-box');
+      const messageInput = document.getElementById('message-input');
+      const messageText = messageInput.value.trim();
+
+      if (messageText) {
+        const newMessage = document.createElement('div');
+        newMessage.className = 'message own';
+        newMessage.innerHTML = `
+          <div class="avatar">🧑</div>
+          <div class="message-content">
+            <div class="message-header">
+              <span class="message-name">You</span>
+              <span class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+            </div>
+            <div>${escapeHtml(messageText)}</div>
+          </div>
+        `;
+
+        chatBox.appendChild(newMessage);
+        messageInput.value = '';
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Enter key support
+    document.getElementById("message-input").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>

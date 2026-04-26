@@ -1,0 +1,325 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin-bottom: 100px; /* To ensure content doesn't overlap with fixed footer */
+}
+
+/* Style for Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #28a745;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+header h1 {
+  font-size: 32px;
+  font-weight: bold;
+  font-family: Verdana, sans-serif;
+  color: #f8f3f3;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 22px;
+  color: #f8f3f3;
+}
+
+nav ul li a:hover {
+  color: #060707;
+}
+
+/* Home Section */
+#home {
+  width: 100%;
+  padding: 50px 20px;
+  background-color: #f3f4f7;
+  text-align: center;
+  background: url(bg.jpg) no-repeat center center/cover;
+}
+header a{
+  text-decoration: none;
+  color: white;
+}
+header a:hover{
+  font-size: 24px;
+  color:black;
+  background-color: white;
+  border-radius: 10px;
+}
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+/* Images within the dashboard section */
+#map, #img {
+  width: 48%; /* Set width to 48% for two side-by-side images on larger screens */
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+#map img, #img img {
+  width: 100%; /* Ensure the image takes full width of the container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; /* Apply border-radius to images */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+/* Media Queries for Responsive Design */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+  .dashboard-container {
+      flex-direction: column; /* Stack images vertically on smaller screens */
+  }
+
+  #map, #img {
+      width: 100%; /* Images take full width on tablets and smaller screens */
+      margin-bottom: 20px; /* Add space between images */
+  }
+}
+
+/* For mobile devices (480px and below) */
+@media (max-width: 480px) {
+  #map img, #img img {
+      border-radius: 6px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Reduce shadow for smaller screens */
+  }
+}
+#home h1 {
+  color: #28a745;
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-family: 'Verdana', sans-serif;
+}
+
+#home p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Features Section */
+.features1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.feature-box1 {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box1:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.feature-box1 h3 {
+  color: #28a745;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.feature-box1 p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Why Choose Us Section */
+#home ul {
+  background-color: rgba(252, 251, 251, 0.69);
+  list-style: none;
+  font-size: 20px;
+  border-radius: 15px;
+  font-family: 'Trebuchet MS', sans-serif;
+  padding: 20px;
+  margin-top: 30px;
+  max-width: 800px;
+  margin: auto;
+}
+
+#home ul li {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#home ul li:before {
+  content: '✔';
+  margin-right: 10px;
+  color: #28a745;
+  font-size: 20px;
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+  }
+
+  nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  nav ul li {
+      margin-left: 0;
+      margin-bottom: 10px;
+  }
+
+  #home h1 {
+      font-size: 24px;
+  }
+
+  #home p {
+      font-size: 16px;
+  }
+
+  .features1 {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  #home ul li {
+      font-size: 16px;
+  }
+
+  .feature-box1 h3 {
+      font-size: 18px;
+  }
+}
+
+/* Features Section */
+.features-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.feature-box {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-box img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.feature-box a {
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.feature-box:hover {
+  transform: scale(1.05);
+}
+
+/* Dashboard Section */
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+#map {
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  background-color: #e0e0e0;
+  margin-bottom: 20px;
+}
+
+#weather {
+  background-color: #f1f1f1;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Footer */
+footer {
+  background-color: #28a745;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#contact {
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #060707;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .features-container, .dashboard-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #map, #weather {
+      max-width: 100%;
+  }
+
+  footer {
+      padding: 0.5rem;
+      font-size: 14px;
+  }
+}

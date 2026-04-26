@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Health Monitoring - AgroNurture</title>
+    <link rel="stylesheet" href="styles2.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <style>
+    /* Range Notes Styling */
+    .range-note {
+      color: #28a745;
+      font-size: 11px;
+      display: block;
+      margin-bottom: 8px;
+      margin-top: 4px;
+      font-style: italic;
+    }
+    form label {
+      display: block;
+      margin-bottom: 2px;
+      margin-top: 12px;
+    }
+    /* Input Styling */
+    input[type="text"], input[type="number"] {
+      font-size: 14px;
+      padding: 8px 12px;
+      height: auto;
+      max-width: 530px;
+      width: 100%;
+    }
+    input::placeholder {
+      font-size: 13px;
+      color: #999;
+    }
+    </style>
+</head>
+<body>
+    <header style="background-color: #28a745; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <div style="flex: 1; text-align: center;">
+            <h1 style="margin: 0; font-size: 24px;">AgroNurture: Soil Health Monitoring</h1>
+        </div>
+        <a href="index.html" style="background-color: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Home</a>
+    </header>
+
+    <div class="container">
+        <h2>Soil Health Monitoring</h2>
+        <form id="soil-health-form">
+            <label for="crop-type">Crop Type:</label>
+            <span class="range-note">Wheat, Rice, Cotton, Tomato, etc.</span>
+            <input type="text" id="crop-type" placeholder="e.g., Wheat, Rice, Tomato" required>
+
+            <label for="soil-type">Soil Type:</label>
+            <span class="range-note">Black, Red, Alluvial, Sandy, Clay, Loamy</span>
+            <input type="text" id="soil-type" placeholder="e.g., Black, Red, Sandy" required>
+
+            <label for="ph-value">pH Value:</label>
+            <span class="range-note">Range: 0-14 | Optimal: 6.0-7.5</span>
+            <input type="number" id="ph-value" step="0.1" min="0" max="14" placeholder="e.g., 6.5" required>
+
+            <label for="nitrogen">Nitrogen (N) kg/ha:</label>
+            <span class="range-note">Range: 0-200 | Low:<50, Med:50-100, High:>100</span>
+            <input type="number" id="nitrogen" min="0" max="200" placeholder="e.g., 75" required>
+
+            <label for="phosphorus">Phosphorus (P) kg/ha:</label>
+            <span class="range-note">Range: 0-100 | Low:<20, Med:20-40, High:>40</span>
+            <input type="number" id="phosphorus" min="0" max="100" placeholder="e.g., 30" required>
+
+            <label for="potassium">Potassium (K) kg/ha:</label>
+            <span class="range-note">Range: 0-300 | Low:<80, Med:80-150, High:>150</span>
+            <input type="number" id="potassium" min="0" max="300" placeholder="e.g., 120" required>
+
+            <button type="submit">Calculate Soil Health</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <footer>
+        <p><span class="copyright">&copy; 2024 AgroNurture</span> - All Rights Reserved</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script src="script2.js"></script>
+</body>
+</html>

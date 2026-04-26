@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroNurture - Fertilizer Recommender</title>
+  <link rel="stylesheet" href="styles1.css" />
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <!-- Leaflet Libraries -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.geometryutil/0.10.0/leaflet.geometryutil.min.js"></script>
+
+  <style>
+  /* Range Notes Styling */
+  .range-note {
+    color: #28a745;
+    font-size: 11px;
+    display: block;
+    font-style: italic;
+    margin-top: 4px;
+    margin-bottom: 6px;
+  }
+  .info-panel td {
+    vertical-align: top;
+    padding: 8px 5px;
+  }
+  .info-panel input {
+    margin-bottom: 2px;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+  .info-panel input::placeholder {
+    font-size: 13px;
+    color: #999;
+  }
+  /* Fertilizer Recommendation Box Styling */
+  #fertilizer-recommendation {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0;
+  }
+  #fertilizer-recommendation > div {
+    background:greenyellow;
+    border: 2px solid #4CAF50 !important;
+    border-radius: 15px !important;
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.2) !important;
+    padding: 25px !important;
+    animation: slideDown 0.5s ease;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  </style>
+</head>
+<body>
+  <header style="background-color: #28a745; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <div style="flex: 1; text-align: center;">
+      <h1 style="margin: 0; font-size: 24px;">AgroNurture: Fertilizer Recommender</h1>
+    </div>
+    <a href="index.html" style="background-color: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Home</a>
+  </header>
+
+  <div id="fertilizer-recommendation" style="margin-top: 15px;"></div>
+
+  <div class="container">
+    <div id="map"></div>
+
+    <div class="info-panel">
+      <h2>Welcome, Farmer!</h2>
+      <p>Drag and select your farm area on the map to analyze soil and weather data.</p>
+      <p>Farm size will be automatically calculated.</p>
+
+      <div class="info">
+        <div id="farm-size"></div>
+        <div id="temp"></div>
+        <div id="hum"></div>
+        <div id="cloud"></div>
+        <div id="rain"></div>
+
+        <table>
+          <tr>
+            <td>Soil Type:</td>
+            <td>
+              <input type="text" name="soil-type" id="soil-type" placeholder="e.g., Black, Red, Sandy" />
+              <span class="range-note">Black, Red, Alluvial, Sandy, Clay, Loamy</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Soil pH:</td>
+            <td>
+              <input type="number" name="ph-value" id="ph-value" min="0" max="14" step="0.1" placeholder="e.g., 6.5"/>
+              <span class="range-note">Range: 0-14 | Optimal: 6.0-7.5</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Nitrogen (kg/ha):</td>
+            <td>
+              <input type="number" name="nitrogen" id="nitrogen" min="0" max="200" placeholder="e.g., 75"/>
+              <span class="range-note">Range: 0-200 | Low:<50, Med:50-100, High:>100</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Potassium (kg/ha):</td>
+            <td>
+              <input type="number" name="potassium" id="potassium" min="0" max="300" placeholder="e.g., 120"/>
+              <span class="range-note">Range: 0-300 | Low:<80, Med:80-150, High:>150</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Phosphorus (kg/ha):</td>
+            <td>
+              <input type="number" name="phosphorus" id="phosphorus" min="0" max="100" placeholder="e.g., 30"/>
+              <span class="range-note">Range: 0-100 | Low:<20, Med:20-40, High:>40</span>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button id="analyze-btn">Analyze Soil and Weather</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><span class="copyright">&copy; 2024 AgroNurture</span> - All Rights Reserved</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
